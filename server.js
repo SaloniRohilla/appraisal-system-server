@@ -1,5 +1,5 @@
 require('dotenv').config();  // This loads the .env file and makes environment variables available
-
+const Question = require('./models/Question');
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
