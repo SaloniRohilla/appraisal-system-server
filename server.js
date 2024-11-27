@@ -12,12 +12,9 @@ console.log('MongoDB URI:', process.env.MONGODB_URI) // Add this line to see if 
 // Connect to the database
 connectDB()
 
-const corsOptions = {
-  origin: 'http://localhost:3000', // Your React app URL
-}
 
 // Middleware
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(express.json())
 
 // Define routes

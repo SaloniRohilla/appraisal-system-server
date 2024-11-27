@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        const dbURI = process.env.MONGODB_URI;  // Get the MongoDB URI from the environment variable
+        const dbURI = process.env.MONGODB_URI;
         if (!dbURI) {
             console.error('MongoDB URI is not set!');
             process.exit(1);
@@ -12,7 +12,21 @@ const connectDB = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
-        console.log('MongoDB Connected to appraisal_system');
+        
+        // Log successful connection with database name
+        const dbName = mongoose.connection.db.databaseName;
+        console.log(`MongoDB Connected to ${dbName}`);
+
+        // Optional: Handle connection events
+        mongoose.connection.on('error', (err) => {
+            console.error('MongoDB connection error:', err);
+        });
+
+        mongoose.connection.on('disconnected', () => {
+            console.log('MongoDB disconnected');
+        });
+
+        return mongoose.connection;
     } catch (err) {
         console.error('MongoDB Connection Error:', err);
         process.exit(1);
