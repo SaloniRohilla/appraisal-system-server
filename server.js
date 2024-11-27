@@ -1,5 +1,5 @@
 require('dotenv').config() // This loads the .env file and makes environment variables available
-const Question = require('./models/Question')
+
 const express = require('express')
 const cors = require('cors')
 const connectDB = require('./config/db')
@@ -12,8 +12,12 @@ console.log('MongoDB URI:', process.env.MONGODB_URI) // Add this line to see if 
 // Connect to the database
 connectDB()
 
+const corsOptions = {
+  origin: 'http://localhost:3000', // Your React app URL
+}
+
 // Middleware
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json())
 
 // Define routes

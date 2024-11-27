@@ -1,10 +1,11 @@
 const Appraisal = require('../models/Appraisal');
 const User = require('../models/User');
 
+// Create a new appraisal
 exports.createAppraisal = async (req, res) => {
   try {
     const { employee, evaluator, questions } = req.body;
-    
+
     const appraisal = new Appraisal({
       employee,
       evaluator,
@@ -18,6 +19,7 @@ exports.createAppraisal = async (req, res) => {
   }
 };
 
+// Get appraisals based on user role
 exports.getAppraisals = async (req, res) => {
   try {
     const { role, userId } = req.user;

@@ -13,7 +13,7 @@ const AppraisalSchema = new mongoose.Schema({
   },
   questions: [{
     question: { 
-      type: mongoose.Schema.Types.ObjectId, 
+      type: String, 
       ref: 'Question' 
     },
     rating: { type: Number, min: 1, max: 5 },
